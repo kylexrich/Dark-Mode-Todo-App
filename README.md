@@ -1,56 +1,48 @@
-# Todo List App (Dark Mode)
-I built this todo list app for my final project in CPSC 210 at UBC. The todo app is rich with features and has a dark mode gui built with Java Swing.
-This application allows users to better organize their tasks and deadlines in a simple, clean
-manor.
+# Dark Mode Todo App
 
-## Screenshots
-ui: https://i.imgur.com/1LwT9mT.png
-
-uml: https://i.imgur.com/u5xbxxq.png
-
-## Motivation
-I used this project as a stepping stone to develop the skills needed to create a larger scale productivity
-project at a later date. Last year,I made a big Microsoft Excel program that makes completing
-daily objectives and habits into a game. After setting your daily habits and objectives, you receive XP points for
-completing them daily. Furthermore, you can set weekly/monthly XP point goals, and compete amongst your friends,
-to stay motivated. Given that I built this on Excel, however, its functionality is limited, and I am not able to
-implement all the features I would like to. Ultimately, my goal is to extend the knowledge I gain from this project
-into creating the prior
-mentioned habit game project. **In a nutshell, productivity and finding new ways to stay organized is what drives me,
-and is the reason behind the creation of this todolist.**
+A desktop to-do manager built with Java Swing. Track tasks with due dates, categories, and priorities, filter/auto-save, and enjoy a focused dark theme with subtle sound cues.
 
 ## Features
-- add a task (or multiple) to to-do list
-    - name
-    - due date
-    - category
-    - priority
-- delete any task from to-do list
-- mark a task as completed
-- view all tasks
-- view/filter the tasks that meet any one of (or all of) certain attributes, including:
-    - status of the task (if completed)
-    - if the task is overdue (due date has passed and task is not complete)
-    - if the task is due today, within a week, or within a month
-    - what priority the task has
-    - what category the task has
-- load a to-do list from a file
-- save to-do list to a file
-- activate and deactivate auto-save
-- sounds play when preforming certain actions
+- Add tasks with name, due date, category, and priority; mark complete or delete.
+- Smart filters: show overdue, due today/7 days/30 days, by priority/category, or completion status.
+- View all tasks in a sortable list; toggle “match any” vs “match all” filters.
+- Save/load task lists to JSON; optional auto-save toggle.
+- Audio feedback for common actions (add, complete, delete, apply/remove filters).
 
-&nbsp;
+## Tech stack
+- **Language/UI:** Java 11+, Swing.
+- **Data:** JSON persistence (org.json).
+- **Build/Run:** IDE-friendly project (IntelliJ/Eclipse). Executable `TodoList.jar` included for quick runs.
 
-### Project Date
-Dec 2020
+## Project layout
+```
+/src/main/ui          # Main window, controller, entrypoint (Main.java)
+/src/main/persistance # JSON loader/saver
+/src/resources        # Icons, sounds, default data
+/lib                  # Third-party jars (json, JUnit)
+/docs                 # Archived course readme & artifacts (not required to run)
+```
 
-### Built With
-IntelliJ IDEA
+## Getting started
+1. Install Java 11+ and an IDE (or use `javac`/`java`).
+2. Clone the repo and ensure `lib/json-20200518.jar` is on the classpath.
+3. Run the app:
+   - **Fastest:**  
+     ```bash
+     java -jar TodoList.jar
+     ```  
+     (All features work; if file saving misbehaves on some platforms, run from source.)
+   - **From source (IDE):** open the project, mark `lib/` jars as dependencies, and run `src/main/ui/Main.java`.
+   - **From source (CLI example):**  
+     ```bash
+     javac -cp lib/json-20200518.jar -d out $(find src -name "*.java")
+     java -cp out:lib/json-20200518.jar main.ui.Main
+     ```
 
-### Setup
-After cloning, import all libraries found in the lib folder
+## Screenshots
+- UI: https://i.imgur.com/1LwT9mT.png  
+- UML: `UML_Design_Diagram.pdf` (in repo) or https://i.imgur.com/u5xbxxq.png
 
-### How to use
-Either download and run the TodoList.jar (all features work, except saving to a file).
-Or, clone the repo and run the src.main.ui.main main method
-
+## Notes
+- Default data lives in `src/resources/data/taskList.json`; saving overwrites this file when run from source.
+- Sounds are in `src/resources/sfx/`; disable system audio if you prefer silent operation.
